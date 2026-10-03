@@ -1,5 +1,5 @@
 const CACHE_NAME = "training-cartridge-v1";
-const ASSETS = ["./index.html", "./manifest.json", "./icon-192.png", "./icon-512.png"];
+const ASSETS = ["./", "./index.html", "./manifest.json", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

@@ -1,12 +1,12 @@
 {
   "name": "Training Cartridge",
-  "short_name": "Cartridge",
-  "description": "Editable weekly workout tracker",
+  "short_name": "Training",
+  "description": "Weekly strength + walking tracker",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#454f3d",
-  "theme_color": "#5c6952",
+  "theme_color": "#7c8b6f",
   "orientation": "portrait",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
