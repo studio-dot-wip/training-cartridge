@@ -167,6 +167,12 @@ body{margin:0;padding:16px;background:transparent;display:flex;justify-content:c
   text-align:right;
   white-space:nowrap;
 }
+.ex-how{
+  font-size:14px;
+  line-height:1.3;
+  color:var(--screen-mid);
+  margin:4px 0 2px 36px;
+}
 .ex-bottom{
   display:flex;
   justify-content:space-between;
@@ -350,7 +356,10 @@ const ICONS = {
   core:  ["00111100","01000010","10111101","10011001","10111101","01000010","00111100","00000000"],
   throw: ["01000010","01100110","00111100","00011000","00111100","01000010","10000001","00000000"],
   raise: ["00010000","10011001","11011011","00110000","00110000","00110000","01100110","01100110"],
-  walk:  ["00110000","00110000","00111000","01111000","00110100","01100010","01000010","10000001"]
+  walk:  ["00110000","00110000","00111000","01111000","00110100","01100010","01000010","10000001"],
+  hip90: ["00000000","00111000","01000100","01000100","00111000","00011100","00100010","01000010"],
+  firehydrant: ["00000000","00110000","00111100","01001010","01001001","00111001","00000000","00000000"],
+  pigeon: ["00000000","01111000","10000100","10011100","01100000","00110000","00011000","00001100"]
 };
 
 function iconSVG(name, size=32){
@@ -375,51 +384,67 @@ const PLAN = {
     warmup:"Warm-up: 5 min — bodyweight squats, arm circles, cat-cow (mat)",
     cooldown:"Cool-down: 5 min — hamstring, quad, chest stretch on mat",
     exercises:[
-      {id:"a1", name:"Goblet Squat", icon:"squat", target:"3 × 12", sets:3},
-      {id:"a2", name:"Bent-Over DB Row", icon:"row", target:"3 × 12/side", sets:3},
-      {id:"a3", name:"DB Shoulder Press", icon:"press", target:"3 × 12", sets:3},
-      {id:"a4", name:"Med Ball Russian Twist", icon:"core", target:"3 × 20", sets:3},
-      {id:"a5", name:"Glute Bridge", icon:"hinge", target:"3 × 15", sets:3},
-      {id:"a6", name:"Plank Hold", icon:"core", target:"3 × 30 sec", sets:3}
+      {id:"a1", name:"Goblet Squat", icon:"squat", target:"3 × 12", sets:3, how:"Hold a dumbbell vertically at your chest. Squat down keeping your chest up, then drive through your heels to stand."},
+      {id:"a2", name:"Bent-Over DB Row", icon:"row", target:"3 × 12/side", sets:3, how:"Hinge forward with a flat back. Pull the dumbbell to your hip, squeeze your shoulder blade, lower with control."},
+      {id:"a3", name:"DB Shoulder Press", icon:"press", target:"3 × 12", sets:3, how:"Press dumbbells overhead from shoulder height until arms are straight, then lower slowly."},
+      {id:"a4", name:"Med Ball Russian Twist", icon:"core", target:"3 × 20", sets:3, how:"Sit with knees bent, lean back slightly, and rotate the ball side to side, tapping the floor."},
+      {id:"a5", name:"Glute Bridge", icon:"hinge", target:"3 × 15", sets:3, how:"Lie on your back, knees bent, feet flat. Drive your hips up, squeeze your glutes, lower with control."},
+      {id:"a6", name:"Plank Hold", icon:"core", target:"3 × 30 sec", sets:3, how:"Forearms on the mat, body in a straight line from head to heels. Brace your core, don't let hips sag."}
     ]
   },
   2: { // Tuesday - walk
-    type:"walk", label:"TUE · WALK + MOBILITY", sub:"30–40 min walk, easy pace",
-    note:"Optional: 5 min mat mobility after — hips, shoulders, spine twists."
+    type:"walk", label:"TUE · WALK + HIP MOBILITY", sub:"30–40 min walk, easy pace",
+    note:"After your walk — hip mobility flow (great for a 39-y/o training body):",
+    mobility:[
+      {id:"m1", name:"90/90 Hip Switch", icon:"hip90", target:"2 × 8/side", sets:2, how:"Sit with your front leg bent 90° in front of you and back leg bent 90° to the side. Rotate both knees to the other side and back."},
+      {id:"m2", name:"World's Greatest Stretch", icon:"lunge", target:"2 × 5/side", sets:2, how:"From a deep lunge, drop your back hand to the floor and rotate your other arm up toward the ceiling, following it with your eyes."},
+      {id:"m3", name:"Deep Squat Hold", icon:"squat", target:"2 × 30 sec", sets:2, how:"Lower into a full squat, heels down, elbows pressing your knees outward. Hold and breathe."}
+    ]
   },
   3: { // Wednesday - Strength B
     type:"strength", label:"WED · STRENGTH B", sub:"Full body — hinge + core focus",
     warmup:"Warm-up: 5 min — leg swings, shoulder rolls, glute bridges x10",
     cooldown:"Cool-down: 5 min — child's pose, quad stretch, chest opener",
     exercises:[
-      {id:"b1", name:"DB Romanian Deadlift", icon:"hinge", target:"3 × 12", sets:3},
-      {id:"b2", name:"Push-Up", icon:"push", target:"3 × 10–15", sets:3},
-      {id:"b3", name:"DB Reverse Lunge", icon:"lunge", target:"3 × 10/leg", sets:3},
-      {id:"b4", name:"Med Ball Slam", icon:"throw", target:"3 × 12", sets:3},
-      {id:"b5", name:"DB Curl to Press", icon:"press", target:"3 × 12", sets:3},
-      {id:"b6", name:"Side Plank", icon:"core", target:"3 × 20 sec/side", sets:3}
+      {id:"b1", name:"DB Romanian Deadlift", icon:"hinge", target:"3 × 12", sets:3, how:"Hinge at the hips with a slight knee bend, lower dumbbells along your legs until you feel a hamstring stretch, then drive hips forward to stand."},
+      {id:"b2", name:"Push-Up", icon:"push", target:"3 × 10–15", sets:3, how:"Hands under shoulders, lower your chest to the floor keeping your body straight, push back up. Drop to knees if needed."},
+      {id:"b3", name:"DB Reverse Lunge", icon:"lunge", target:"3 × 10/leg", sets:3, how:"Step one leg back, lower until both knees are near 90°, push through your front heel to return to standing."},
+      {id:"b4", name:"Med Ball Slam", icon:"throw", target:"3 × 12", sets:3, how:"Raise the ball overhead, slam it down hard into the floor, squat to retrieve it and repeat."},
+      {id:"b5", name:"DB Curl to Press", icon:"press", target:"3 × 12", sets:3, how:"Curl the dumbbells to your shoulders, then press overhead in one smooth motion."},
+      {id:"b6", name:"Side Plank", icon:"core", target:"3 × 20 sec/side", sets:3, how:"Prop up on one forearm, stack your feet, lift your hips so your body forms a straight line."}
     ]
   },
   4: { // Thursday - walk
-    type:"walk", label:"THU · WALK", sub:"30–40 min walk, easy pace",
-    note:"Feeling good? Add a few brisk intervals: 1 min fast / 2 min easy."
+    type:"walk", label:"THU · WALK + HIP MOBILITY", sub:"30–40 min walk, easy pace",
+    note:"Feeling good? Add a few brisk intervals: 1 min fast / 2 min easy. Then:",
+    mobility:[
+      {id:"m4", name:"Fire Hydrant", icon:"firehydrant", target:"2 × 12/side", sets:2, how:"On hands and knees, lift one bent knee out to the side, keeping your hips square. Lower with control."},
+      {id:"m5", name:"Cossack Squat", icon:"lunge", target:"2 × 8/side", sets:2, how:"Wide stance, shift your weight into one bent knee while the other leg stays straight. Alternate sides."},
+      {id:"m6", name:"Pigeon Stretch", icon:"pigeon", target:"2 × 30 sec/side", sets:2, how:"Front shin angled across the mat, back leg extended straight behind you. Fold forward gently over the front leg."}
+    ]
   },
   5: { // Friday - Strength C
     type:"strength", label:"FRI · STRENGTH C", sub:"Full body — legs + shoulders focus",
     warmup:"Warm-up: 5 min — bodyweight squats, band-free arm circles, torso twists",
     cooldown:"Cool-down: 5 min — figure-4 stretch, lat stretch, deep breathing",
     exercises:[
-      {id:"c1", name:"DB Sumo Squat", icon:"squat", target:"3 × 15", sets:3},
-      {id:"c2", name:"Single-Arm DB Row", icon:"row", target:"3 × 12/side", sets:3},
-      {id:"c3", name:"Med Ball Overhead Throw", icon:"throw", target:"3 × 12", sets:3},
-      {id:"c4", name:"DB Lateral Raise", icon:"raise", target:"3 × 12", sets:3},
-      {id:"c5", name:"Mat Bicycle Crunch", icon:"core", target:"3 × 20", sets:3},
-      {id:"c6", name:"Bird Dog", icon:"core", target:"3 × 10/side", sets:3}
+      {id:"c1", name:"DB Sumo Squat", icon:"squat", target:"3 × 15", sets:3, how:"Wide stance, toes turned out, hold a dumbbell with both hands and squat down between your legs."},
+      {id:"c2", name:"Single-Arm DB Row", icon:"row", target:"3 × 12/side", sets:3, how:"Support yourself with one hand on a bench or chair, row the dumbbell to your hip with the other."},
+      {id:"c3", name:"Med Ball Overhead Throw", icon:"throw", target:"3 × 12", sets:3, how:"Lower into a squat holding the ball, explode up and throw it overhead or forward."},
+      {id:"c4", name:"DB Lateral Raise", icon:"raise", target:"3 × 12", sets:3, how:"Raise dumbbells out to your sides until arms are level with shoulders, lower slowly."},
+      {id:"c5", name:"Mat Bicycle Crunch", icon:"core", target:"3 × 20", sets:3, how:"Lie on your back, alternate bringing opposite elbow to opposite knee in a pedaling motion."},
+      {id:"c6", name:"Bird Dog", icon:"core", target:"3 × 10/side", sets:3, how:"On hands and knees, extend opposite arm and leg, hold briefly, return and switch sides."}
     ]
   },
   6: { // Saturday - active recovery
     type:"walk", label:"SAT · ACTIVE RECOVERY", sub:"20–30 min easy walk + stretch",
-    note:"Keep it light. This day is about recovery, not effort."
+    note:"Keep it light. This day is about recovery, not effort. Full hip flow:",
+    mobility:[
+      {id:"m7", name:"90/90 Hip Switch", icon:"hip90", target:"2 × 8/side", sets:2, how:"Sit with your front leg bent 90° in front of you and back leg bent 90° to the side. Rotate both knees to the other side and back."},
+      {id:"m8", name:"Fire Hydrant", icon:"firehydrant", target:"2 × 12/side", sets:2, how:"On hands and knees, lift one bent knee out to the side, keeping your hips square. Lower with control."},
+      {id:"m9", name:"World's Greatest Stretch", icon:"lunge", target:"2 × 5/side", sets:2, how:"From a deep lunge, drop your back hand to the floor and rotate your other arm up toward the ceiling, following it with your eyes."},
+      {id:"m10", name:"Pigeon Stretch", icon:"pigeon", target:"2 × 30 sec/side", sets:2, how:"Front shin angled across the mat, back leg extended straight behind you. Fold forward gently over the front leg."}
+    ]
   },
   0: { // Sunday - rest
     type:"walk", label:"SUN · REST", sub:"Full rest, or a short gentle walk",
@@ -529,6 +554,7 @@ function renderDay(){
             <div class="ex-name">${ex.name}</div>
             <div class="ex-target">${ex.target}</div>
           </div>
+          ${ex.how ? `<div class="ex-how">${ex.how}</div>` : ""}
           <div class="ex-bottom">
             <div class="sets">${setsHTML}</div>
             <button class="rest-btn" data-rest="60">REST 60s</button>
@@ -562,10 +588,32 @@ function renderDay(){
     });
 
   } else {
+    const mobilityHTML = plan.mobility ? plan.mobility.map(ex=>{
+      const setsHTML = Array.from({length: ex.sets}).map((_,i)=>{
+        const setKey = `${ex.id}-${i}`;
+        const done = data.completedSets.includes(setKey);
+        return `<div class="set-box ${done?'done':''}" data-setkey="${setKey}"></div>`;
+      }).join("");
+      return `
+        <div class="exercise-card">
+          <div class="ex-top">
+            <div class="ex-icon">${iconSVG(ex.icon,28)}</div>
+            <div class="ex-name">${ex.name}</div>
+            <div class="ex-target">${ex.target}</div>
+          </div>
+          ${ex.how ? `<div class="ex-how">${ex.how}</div>` : ""}
+          <div class="ex-bottom">
+            <div class="sets">${setsHTML}</div>
+            <button class="rest-btn" data-rest="30">REST 30s</button>
+          </div>
+        </div>`;
+    }).join("") : "";
+
     container.innerHTML = `
       <div class="day-title">${plan.label}</div>
       <div class="day-sub">${plan.sub}</div>
       <div class="note-box">${plan.note}</div>
+      ${mobilityHTML}
       <div class="walk-block">
         ${iconSVG("walk",64)}
         <button class="big-check ${data.dayComplete?'done':''}" id="walkCheck">
@@ -573,6 +621,21 @@ function renderDay(){
         </button>
       </div>
     `;
+
+    container.querySelectorAll(".set-box").forEach(box=>{
+      box.addEventListener("click", async ()=>{
+        const key = box.dataset.setkey;
+        const idx = data.completedSets.indexOf(key);
+        if(idx>-1) data.completedSets.splice(idx,1);
+        else data.completedSets.push(key);
+        box.classList.toggle("done");
+        await saveDay(dateStr);
+      });
+    });
+    container.querySelectorAll(".rest-btn").forEach(btn=>{
+      btn.addEventListener("click", ()=> startTimer(parseInt(btn.dataset.rest)));
+    });
+
     document.getElementById("walkCheck").addEventListener("click", async ()=>{
       data.dayComplete = !data.dayComplete;
       await saveDay(dateStr);
